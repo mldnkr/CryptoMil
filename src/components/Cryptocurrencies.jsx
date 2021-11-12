@@ -41,7 +41,7 @@ function Cryptocurrencies({ simplified }) {
             className="crypto-card"
             key={currency.rank}
           >
-            <Link to={`/crypto/${currency.rank}`}>
+            <Link to={`/crypto/${currency.uuid}`}>
               <Card
                 hoverable
                 title={`${currency.rank}. ${currency.name}`}
