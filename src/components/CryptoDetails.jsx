@@ -17,8 +17,9 @@ import {
 
 import {
   useGetCryptoDetailsQuery,
-  useGetCryptosQuery
+  useGetCryptoHistoryQuery
 } from "../services/cryptoApi";
+import Chart from "./Chart";
 
 const { Title, Text } = Typography;
 const { Option } = Select;
@@ -28,10 +29,15 @@ function Cryptodetails() {
   const [timePeriod, settimePeriod] = useState("7d");
 
   const { data, isFetching } = useGetCryptoDetailsQuery(coinId);
+  const { data: coinHistory } = useGetCryptoHistoryQuery({
+    coinId,
+    timePeriod
+  });
   const cryptoDetails = data?.data?.coin;
+
   if (isFetching) return "Loading...";
 
-  console.log(data);
+  console.log(cryptoDetails);
 
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 
@@ -114,6 +120,11 @@ function Cryptodetails() {
           <Option key={date}>{date}</Option>
         ))}
       </Select>
+      <Chart
+        coinHistory={millify(cryptoDetails.change)}
+        currentPrice={millify(cryptoDetails.price)}
+        coinName={cryptoDetails.name}
+      />
       <Col className="stats-container">
         <Col className="coin-value-statistics">
           <Col className="coin-value-statistics-heading">
