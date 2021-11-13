@@ -37,7 +37,7 @@ function Cryptodetails() {
 
   if (isFetching) return "Loading...";
 
-  console.log(cryptoDetails);
+  console.log(coinHistory);
 
   const time = ["3h", "24h", "7d", "30d", "1y", "3m", "3y", "5y"];
 
@@ -89,12 +89,12 @@ function Cryptodetails() {
     },
     {
       title: "Total Supply",
-      value: `$ ${cryptoDetails.totalSupply}`,
+      value: `$ ${cryptoDetails?.supply?.total}`,
       icon: <ExclamationCircleOutlined />
     },
     {
       title: "Circulating Supply",
-      value: `$ ${cryptoDetails.circulatingSupply}`,
+      value: `$ ${cryptoDetails?.supply?.circulating}`,
       icon: <ExclamationCircleOutlined />
     }
   ];
@@ -121,7 +121,7 @@ function Cryptodetails() {
         ))}
       </Select>
       <Chart
-        coinHistory={millify(cryptoDetails.change)}
+        coinHistory={coinHistory}
         currentPrice={millify(cryptoDetails.price)}
         coinName={cryptoDetails.name}
       />

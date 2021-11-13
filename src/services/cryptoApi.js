@@ -21,7 +21,7 @@ export const cryptoApi = createApi({
     }),
     getCryptoHistory: builder.query({
       query: ({ coinId, timePeriod }) =>
-        createRequest(`/coin/${coinId}/history/${timePeriod}`)
+        createRequest(`/coin/${coinId}/history?timePeriod=${timePeriod}`)
     })
   })
 });
@@ -31,3 +31,6 @@ export const {
   useGetCryptoDetailsQuery,
   useGetCryptoHistoryQuery
 } = cryptoApi;
+
+// https://api.coinranking.com/v2/coin/Qwsogvtv82FCd/history?timePeriod=1y
+// https://api.coinranking.com/v2/coin/Qwsogvtv82FCd/history/7d
