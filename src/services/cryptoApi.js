@@ -16,6 +16,9 @@ export const cryptoApi = createApi({
     getCryptos: builder.query({
       query: (count) => createRequest(`/coins?limit=${count}`)
     }),
+    getExchanges: builder.query({
+      query: () => createRequest(`/exchanges`)
+    }),
     getCryptoDetails: builder.query({
       query: (coinId) => createRequest(`/coin/${coinId}`)
     }),
@@ -29,8 +32,6 @@ export const cryptoApi = createApi({
 export const {
   useGetCryptosQuery,
   useGetCryptoDetailsQuery,
-  useGetCryptoHistoryQuery
+  useGetCryptoHistoryQuery,
+  useGetExchangesQuery
 } = cryptoApi;
-
-// https://api.coinranking.com/v2/coin/Qwsogvtv82FCd/history?timePeriod=1y
-// https://api.coinranking.com/v2/coin/Qwsogvtv82FCd/history/7d
